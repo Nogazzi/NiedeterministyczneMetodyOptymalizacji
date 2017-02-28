@@ -9,7 +9,7 @@ public class RozkladJednostajny implements RandomGenerator {
     @Override
     public double getRandomDouble() {
         Random random = new Random();
-        double result = random.nextDouble();
+        double result = (random.nextDouble()*2)-1;
         return result;
     }
 
