@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by Nogaz on 27.02.2017.
  */
-public class Main {
+public class MainManager {
 
     public static void main(String[] args){
         int iloscLiczb = 1000;
