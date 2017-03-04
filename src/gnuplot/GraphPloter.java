@@ -18,14 +18,17 @@ import java.util.ArrayList;
  */
 public class GraphPloter {
 
+    private static final String graphPath = ;
+    private static final String gnuplotPath = ;
 
     public static void createGraph(double[][] resultsTab, String graphName){
 
 
 
+
         //zapis do pliku
         ImageTerminal png = new ImageTerminal();
-        File file = new File("C:\\Users\\Nogaz\\NiedeterministyczneMetodyOptymalizacji\\" + graphName + ".png");
+        File file = new File(graphPath + graphName + ".png");
         try{
             file.createNewFile();
             png.processOutput(new FileInputStream(file));
@@ -35,7 +38,7 @@ public class GraphPloter {
             e.printStackTrace();
         }
 
-        JavaPlot p = new JavaPlot("C:\\Program Files (x86)\\gnuplot\\bin/gnuplot.exe");
+        JavaPlot p = new JavaPlot(gnuplotPath);
         p.setTerminal(png);
         p.getAxis("x").setLabel("step");
         p.getAxis("x").setBoundaries(1,1000);
