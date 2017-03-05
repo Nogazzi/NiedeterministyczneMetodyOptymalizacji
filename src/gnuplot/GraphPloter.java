@@ -18,8 +18,8 @@ import java.util.ArrayList;
  */
 public class GraphPloter {
 
-    private static final String graphPath = ;
-    private static final String gnuplotPath = ;
+    private static final String gnuplotPath = "C:\\Program Files (x86)\\gnuplot\\bin/gnuplot.exe";
+    private static final String graphPath = "C:\\Users\\Nogaz\\NiedeterministyczneMetodyOptymalizacji\\";
 
     public static void createGraph(double[][] resultsTab, String graphName){
 

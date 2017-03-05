@@ -37,19 +37,19 @@ public class LocalSearchMain {
         }
         //rysuj wykresy dla sum losowan, wszystkich rozkladow
         GraphPloter.createGraph(getSumOfResults(normalDistributionSearchResults), "suma symulacji o rozkladzie normalnym");
-
+        generateSimulationSumTxtFile(getSumOfResults(normalDistributionSearchResults), "sumaSymRozklNormalny.txt");
         GraphPloter.createGraph(getSumOfResults(uniformDistributionSearchResults), "suma symulacji o rozkladzie jednostajnym");
-
+        generateSimulationSumTxtFile(getSumOfResults(uniformDistributionSearchResults), "sumaSymRozklJednostajny.txt");
         GraphPloter.createGraph(getSumOfResults(cauchyDistributionSearchResults), "suma symulacji o rozkladzie cauchyego");
-
+        generateSimulationSumTxtFile(getSumOfResults(cauchyDistributionSearchResults), "sumaSymRozklCauchyego.txt");
 
         //rysuj wykresy dla poszczegolnych wszystkich losowan i rozkladow
         GraphPloter.createGraph(normalDistributionSearchResults, "symulacja o rozkladzie normalnym");
-
+        generateTxtFile(normalDistributionSearchResults, "symRozklNormalny.txt");
         GraphPloter.createGraph(uniformDistributionSearchResults, "symulacja o rozkladzie jednostajnym");
-
+        generateTxtFile(uniformDistributionSearchResults, "symRozklJednostajny.txt");
         GraphPloter.createGraph(cauchyDistributionSearchResults, "symulacja o rozkladzie cauchyego");
-
+        generateTxtFile(cauchyDistributionSearchResults, "symRozklCauchyego.txt");
     }
 
     public static void saveArray(double[] array, String filename){
@@ -77,5 +77,42 @@ public class LocalSearchMain {
             }
         }
         return stepsSums;
+    }
+
+    public static void generateTxtFile(double[][] searchResults, String filename){
+        PrintWriter bw;
+        FileWriter fw;
+        try {
+            fw = new FileWriter(filename);
+            bw = new PrintWriter(fw);
+            for( int step = 0 ; step < searchResults[0].length ; ++step ){
+                for( int simulation = 0 ; simulation < searchResults.length ; ++simulation ){
+
+                    bw.print(searchResults[simulation][step] + "\t");
+                }
+                bw.print("\n");
+            }
+
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void generateSimulationSumTxtFile(double[] searchResults, String filename){
+        PrintWriter bw;
+        FileWriter fw;
+        try {
+            fw = new FileWriter(filename);
+            bw = new PrintWriter(fw);
+            for( int simulation = 0 ; simulation < searchResults.length ; ++simulation ){
+
+                bw.println(searchResults[simulation]);
+            }
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

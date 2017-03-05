@@ -2,6 +2,10 @@ package localsearch;
 
 import generatory.RandomGenerator;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  * Created by Nogaz on 04.03.2017.
  */
@@ -40,18 +44,7 @@ public class LocalSearchImpl implements LocalSearch {
             resultsList[i] = tmpResult;
             //System.out.println(tmpResult);
         }
-        /*while(counter < critSTOP ){
-            x1 = x1 + generator.getRandomDouble();
-            x2 = x2 + generator.getRandomDouble();
-            newNeighbour = calculatePointValue(x1, x2);
-            if( newNeighbour < tmpResult ){
-                tmpResult = newNeighbour;
-            }
-            //resultsList.add(tmpResult);
-            resultsList[i] = tmpResult;
-            System.out.println(tmpResult);
-            counter++;
-        }*/
+
     }
 
     @Override
@@ -67,6 +60,7 @@ public class LocalSearchImpl implements LocalSearch {
     public double[] getResultsList(){
         return this.resultsList;
     }
+
 
 
 }
