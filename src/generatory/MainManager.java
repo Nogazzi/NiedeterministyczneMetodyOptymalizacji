@@ -1,3 +1,5 @@
+package generatory;
+
 import com.sun.javafx.binding.StringFormatter;
 import generatory.RandomGenerator;
 import generatory.RozkladCauchyego;

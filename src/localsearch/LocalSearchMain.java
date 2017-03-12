@@ -1,6 +1,5 @@
 package localsearch;
 
-import gnuplot.GraphPloter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,19 +35,13 @@ public class LocalSearchMain {
             cauchyDistributionSearchResults[i] = cauchySearch.getResultsList();
         }
         //rysuj wykresy dla sum losowan, wszystkich rozkladow
-        GraphPloter.createGraph(getSumOfResults(normalDistributionSearchResults), "suma symulacji o rozkladzie normalnym");
         generateSimulationSumTxtFile(getSumOfResults(normalDistributionSearchResults), "sumaSymRozklNormalny.txt");
-        GraphPloter.createGraph(getSumOfResults(uniformDistributionSearchResults), "suma symulacji o rozkladzie jednostajnym");
         generateSimulationSumTxtFile(getSumOfResults(uniformDistributionSearchResults), "sumaSymRozklJednostajny.txt");
-        GraphPloter.createGraph(getSumOfResults(cauchyDistributionSearchResults), "suma symulacji o rozkladzie cauchyego");
         generateSimulationSumTxtFile(getSumOfResults(cauchyDistributionSearchResults), "sumaSymRozklCauchyego.txt");
 
         //rysuj wykresy dla poszczegolnych wszystkich losowan i rozkladow
-        GraphPloter.createGraph(normalDistributionSearchResults, "symulacja o rozkladzie normalnym");
         generateTxtFile(normalDistributionSearchResults, "symRozklNormalny.txt");
-        GraphPloter.createGraph(uniformDistributionSearchResults, "symulacja o rozkladzie jednostajnym");
         generateTxtFile(uniformDistributionSearchResults, "symRozklJednostajny.txt");
-        GraphPloter.createGraph(cauchyDistributionSearchResults, "symulacja o rozkladzie cauchyego");
         generateTxtFile(cauchyDistributionSearchResults, "symRozklCauchyego.txt");
     }
 
