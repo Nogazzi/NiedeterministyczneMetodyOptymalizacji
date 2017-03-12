@@ -10,8 +10,8 @@ public class VariableNeighbourSearchJednostajny extends VariableNeighbourSearchI
         super();
         generator = new RozkladJednostajny();
     }
-    public VariableNeighbourSearchJednostajny(int liczbaOdcinkow){
-        super(liczbaOdcinkow);
+    public VariableNeighbourSearchJednostajny(double x1, double x2, int liczbaOdcinkow){
+        super(x1, x2, liczbaOdcinkow);
         generator = new RozkladJednostajny();
     }
 }

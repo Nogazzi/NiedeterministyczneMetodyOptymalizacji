@@ -10,8 +10,8 @@ public class VariableNeighbourSearchNormalny extends VariableNeighbourSearchImpl
         super();
         generator = new RozkladNormalny();
     }
-    public VariableNeighbourSearchNormalny(int liczbaOdcinkow){
-        super(liczbaOdcinkow);
+    public VariableNeighbourSearchNormalny(double x1, double x2, int liczbaOdcinkow){
+        super(x1, x2, liczbaOdcinkow);
         generator = new RozkladNormalny();
     }
 }

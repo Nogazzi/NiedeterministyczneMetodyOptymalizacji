@@ -9,4 +9,5 @@ public interface VariableNeighbourSearch {
     public void neighbourChange();
     public void variableNeighbourDescent();
     public void setDelta(int deltasAmount);
+    public double threeHumpCamel(double x1, double x2) throws VariableNeighbourSearchImpl.ThreeHumpCamelInputException;
 }
