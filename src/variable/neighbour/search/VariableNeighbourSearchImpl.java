@@ -96,7 +96,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
         for( int i = 0 ; i < iloscProb ; ++i ){
             int k = 0;
             while( k < k_max ){
-                point1 = shake(point, k);
+                point1 = shake(point, deltaTab[k]);
                 point2 = VND(point1, k_max);
 
                 PointAndIndexK pointAndIndexK = neighbourChange(point, point2, k);
@@ -114,7 +114,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
         Point point1;
         int k = 0;
         while( k < k_max ){
-            point1 = shake(point, k);
+            point1 = shake(point, deltaTab[k]);
 
             PointAndIndexK pointAndIndexK = neighbourChange(point, point1, k);
             point = pointAndIndexK.getPoint();

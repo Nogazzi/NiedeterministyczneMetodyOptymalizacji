@@ -18,7 +18,7 @@ public abstract class LocalSearchImpl implements LocalSearch {
     private double x2Init = -10;
     double x1tmp;
     double x2tmp;
-    RandomGenerator generator;
+    protected RandomGenerator generator;
     double[] resultsList;
 
 
