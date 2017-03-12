@@ -46,7 +46,7 @@ public abstract class VariableNeighbourSearchImpl implements VariableNeighbourSe
         this.deltaTab = new double[deltasAmount];
         double deltaTmp = 1/(double)deltasAmount;
         System.out.println("Podzielono na " + deltasAmount + " odcinków");
-        for(int i = 0 ; i < deltasAmount ; ++i ){
+        for(int i = deltasAmount-1 ; i >= 0 ; --i ){
             this.deltaTab[i] = (i+1)*deltaTmp;
             System.out.println(this.deltaTab[i]);
         }
