@@ -9,25 +9,27 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
 
     private double startX1;
     private double startX2;
-    private RandomGenerator generator;
+    protected RandomGenerator generator;
     private int k_max = 2;
     private double[] deltaTab;
     private int actualDeltaIndex = 0;
     private final int iloscProb = 1000;
-
+    private final Point initPoint;
+/*
     public VariableNeighbourSearchImpl(){
         setDelta(this.k_max);
-    }
+    }*/
     public VariableNeighbourSearchImpl(double x1, double x2, int k_max){
         this.k_max = k_max;
         setDelta(this.k_max);
         this.startX1 = x1;
         this.startX2 = x2;
+        initPoint = new Point(x1, x2);
     }
 
     @Override
-    public void doSearch() {
-
+    public Point doSearch() {
+        return GVNS(initPoint, k_max);
     }
 
     @Override
@@ -76,6 +78,9 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     public double threeHumpCamel(Point point) {
         double x1 = point.getX1();
         double x2 = point.getX2();
+        System.out.println("Three hump camel:");
+        System.out.println("x1: " + x1);
+        System.out.println("x2: " + x2);
         if( x1 < -5.0d || x1 > 5.0d || x2 < -5.0d || x2 > 5.0d ){
             throw new ThreeHumpCamelInputException();
         }
