@@ -27,7 +27,7 @@ public class MainManager {
         generator = new RozkladJednostajny();
         double[] rozkladJednostajny = new double[iloscLiczb];
         for (int i = 0 ; i < rozkladJednostajny.length ; ++i ) {
-            rozkladJednostajny[i] = (generator.getRandomDouble()*2)-1;
+            rozkladJednostajny[i] = generator.getRandomDouble();
         }
         saveArray(rozkladJednostajny, "rozkladJednostajny.txt");
 
