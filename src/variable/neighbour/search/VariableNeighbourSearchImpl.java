@@ -7,18 +7,20 @@ import generatory.RandomGenerator;
  */
 public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
 
-    double startX1;
-    double startX2;
-    RandomGenerator generator;
-    int liczbaOdcinkow = 2;
-    double[] deltaTab;
+    private double startX1;
+    private double startX2;
+    private RandomGenerator generator;
+    private int k_max = 2;
+    private double[] deltaTab;
+    private int actualDeltaIndex = 0;
+    private final int iloscProb = 1000;
 
     public VariableNeighbourSearchImpl(){
-        setDelta(this.liczbaOdcinkow);
+        setDelta(this.k_max);
     }
-    public VariableNeighbourSearchImpl(double x1, double x2, int liczbaOdcinkow){
-        this.liczbaOdcinkow = liczbaOdcinkow;
-        setDelta(this.liczbaOdcinkow);
+    public VariableNeighbourSearchImpl(double x1, double x2, int k_max){
+        this.k_max = k_max;
+        setDelta(this.k_max);
         this.startX1 = x1;
         this.startX2 = x2;
     }
@@ -36,13 +38,27 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     }
 
     @Override
-    public void neighbourChange() {
-
+    public PointAndIndexK neighbourChange(Point point1, Point point2, int k) {
+        if( threeHumpCamel(point2) < threeHumpCamel(point1) ){
+            point1 = point2;
+            k = 0;
+        }else{
+            k += 1;
+        }
+        return new PointAndIndexK(point1, k);
     }
 
     @Override
-    public void variableNeighbourDescent() {
-
+    public Point VND(Point point, int k_max) {
+        Point point2 = null;
+        int k = 0;
+        while( k < k_max ){
+            point2 = bestNeighour(point);
+            PointAndIndexK pointAndIndexK = neighbourChange(point, point2, k);
+            point = pointAndIndexK.getPoint();
+            k = pointAndIndexK.getIndexK();
+        }
+        return point;
     }
 
     @Override
@@ -57,13 +73,55 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     }
 
     @Override
-    public double threeHumpCamel(double x1, double x2) {
+    public double threeHumpCamel(Point point) {
+        double x1 = point.getX1();
+        double x2 = point.getX2();
         if( x1 < -5.0d || x1 > 5.0d || x2 < -5.0d || x2 > 5.0d ){
             throw new ThreeHumpCamelInputException();
         }
         double result = 2.0d*x1*x1 - 1.05d*x1*x1*x1*x1 + (x1*x1*x1*x1*x1*x1)/6.0d + x1*x2 + x2*x2;
         return result;
     }
+
+    @Override
+    public Point GVNS(Point point, int k_max) {
+        point = RVNS(point, k_max);
+        Point point1;
+        Point point2;
+        for( int i = 0 ; i < iloscProb ; ++i ){
+            int k = 0;
+            while( k < k_max ){
+                point1 = shake(point, k);
+                point2 = VND(point1, k_max);
+                //##############
+                neighbourChange(point, point2, k);
+                //^^^^^^^^^^^^^^
+            }
+        }
+
+        return point;
+    }
+
+    @Override
+    public Point RVNS(Point point, int k_max) {
+        Point pointX = null;
+        return pointX;
+    }
+
+    @Override
+    public Point bestNeighour(Point point) {
+        Point point2;
+        for( int i = 0 ; i < 1000 ; ++i ){
+            double x1_2 = generator.getRandomDouble();
+            double x2_2 = generator.getRandomDouble();
+            point2 = new Point(x1_2, x2_2);
+            if( threeHumpCamel(point2) < threeHumpCamel(point) ){
+                point = point2;
+            }
+        }
+        return point;
+    }
+
 
     public class ThreeHumpCamelInputException extends RuntimeException{};
 

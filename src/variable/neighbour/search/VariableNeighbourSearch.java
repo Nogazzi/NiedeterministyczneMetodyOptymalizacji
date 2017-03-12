@@ -6,8 +6,11 @@ package variable.neighbour.search;
 public interface VariableNeighbourSearch {
     public void doSearch();
     public Point shake(Point point, double delta);
-    public void neighbourChange();
-    public void variableNeighbourDescent();
+    public PointAndIndexK neighbourChange(Point point1, Point point2, int k);
+    public Point VND(Point point, int k_max);
     public void setDelta(int deltasAmount);
-    public double threeHumpCamel(double x1, double x2) throws VariableNeighbourSearchImpl.ThreeHumpCamelInputException;
+    public double threeHumpCamel(Point point);
+    public Point GVNS(Point point, int k_max);
+    public Point RVNS(Point point, int k_max);
+    public Point bestNeighour(Point point);
 }

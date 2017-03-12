@@ -13,7 +13,5 @@ public class Point {
     public double getX1(){
         return this.x1;
     }
-    public double getX2(){
-        return this.x2;
-    }
+    public double getX2() { return this.x2; }
 }
