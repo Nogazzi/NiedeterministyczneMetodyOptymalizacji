@@ -14,9 +14,9 @@ public class RozkladJednostajny implements RandomGenerator {
     }
 
     @Override
-    public double getRandomDouble(double ceil) {
+    public double getRandomDouble(double delta) {
         Random random = new Random();
-        double result = ((random.nextDouble()*2.0d) - 1.0d )*ceil;
+        double result = ((random.nextDouble()*2.0d) - 1.0d )*delta;
         return result;
     }
 
