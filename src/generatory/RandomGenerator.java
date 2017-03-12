@@ -6,6 +6,5 @@ package generatory;
 public interface RandomGenerator {
     public double getRandomDouble();
     public double getRandomDouble(double ceil);
-    public int getRandomInteger();
-    public int getRandomInteger(int ceil);
+
 }

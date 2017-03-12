@@ -21,17 +21,4 @@ public class RozkladNormalny implements  RandomGenerator {
         return result;
     }
 
-    @Override
-    public int getRandomInteger() {
-        Random random = new Random();
-        int result = (int)random.nextGaussian();
-        return result;
-    }
-
-    @Override
-    public int getRandomInteger(int ceil) {
-        Random random = new Random();
-        int result = (int)random.nextGaussian();
-        return result;
-    }
 }

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 /**
  * Created by Nogaz on 04.03.2017.
  */
-public class LocalSearchImpl implements LocalSearch {
+public abstract class LocalSearchImpl implements LocalSearch {
 
     private double x1;
     private double x2;
