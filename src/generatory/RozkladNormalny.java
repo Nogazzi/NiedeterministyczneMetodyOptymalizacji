@@ -15,6 +15,13 @@ public class RozkladNormalny implements  RandomGenerator {
     }
 
     @Override
+    public double getRandomDouble(double ceil) {
+        Random random = new Random();
+        double result = random.nextGaussian()*ceil;
+        return result;
+    }
+
+    @Override
     public int getRandomInteger() {
         Random random = new Random();
         int result = (int)random.nextGaussian();

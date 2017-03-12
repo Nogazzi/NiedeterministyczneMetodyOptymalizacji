@@ -4,7 +4,7 @@ package generatory;
  * Created by Nogaz on 27.02.2017.
  */
 public class RozkladCauchyego implements RandomGenerator {
-    double sigma = 1.0;
+    double sigma = 2.0;
     @Override
     public double getRandomDouble() {
         RandomGenerator jednostajny = new RozkladJednostajny();
@@ -16,7 +16,7 @@ public class RozkladCauchyego implements RandomGenerator {
     public double getRandomDouble(double sigma) {
         RandomGenerator jednostajny = new RozkladJednostajny();
         double d = jednostajny.getRandomDouble();
-        double result = sigma*Math.tan(Math.PI * (d-0.5));
+        double result = this.sigma*Math.tan(Math.PI * (d-0.5));
 
         return result;
     }
