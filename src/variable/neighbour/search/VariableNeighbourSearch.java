@@ -12,5 +12,5 @@ public interface VariableNeighbourSearch {
     public double threeHumpCamel(Point point);
     public Point GVNS(Point point, int k_max);
     public Point RVNS(Point point, int k_max);
-    public Point bestNeighour(Point point);
+    public Point bestNeighour(Point point, int k);
 }

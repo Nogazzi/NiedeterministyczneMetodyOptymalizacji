@@ -12,14 +12,14 @@ public class VNSmain {
         RandomGenerator generator = new RozkladJednostajny();
         double startX1 = generator.getRandomDouble()*5;
         double startX2 = generator.getRandomDouble()*5;
-        int deltasAmount = 5;
-        VariableNeighbourSearch cauchy = new VariableNeighbourSearchCauchy(startX1, startX2, deltasAmount);
+        int k_max = 5;
+        VariableNeighbourSearch cauchy = new VariableNeighbourSearchCauchy(startX1, startX2, k_max);
         System.out.println(cauchy.doSearch());
 
-        VariableNeighbourSearch normalny = new VariableNeighbourSearchNormalny(startX1, startX2, deltasAmount);
+        VariableNeighbourSearch normalny = new VariableNeighbourSearchNormalny(startX1, startX2, k_max);
         System.out.println(normalny.doSearch());
 
-        VariableNeighbourSearch jednostajny = new VariableNeighbourSearchJednostajny(startX1, startX2, deltasAmount);
+        VariableNeighbourSearch jednostajny = new VariableNeighbourSearchJednostajny(startX1, startX2, k_max);
         System.out.println(jednostajny.doSearch());
         long duration = System.currentTimeMillis() - time;
         System.out.println("Czas obliczeń: " + duration/1000);

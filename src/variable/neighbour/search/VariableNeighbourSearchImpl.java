@@ -10,9 +10,8 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     private double startX1;
     private double startX2;
     protected RandomGenerator generator;
-    private int k_max = 2;
+    private int k_max;
     private double[] deltaTab;
-    private int actualDeltaIndex = 0;
     private final int iloscProb = 1000;
     private final Point initPoint;
 /*
@@ -55,7 +54,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
         Point point2 = null;
         int k = 0;
         while( k < k_max ){
-            point2 = bestNeighour(point);
+            point2 = bestNeighour(point, k);
             PointAndIndexK pointAndIndexK = neighbourChange(point, point2, k);
             point = pointAndIndexK.getPoint();
             k = pointAndIndexK.getIndexK();
@@ -124,11 +123,11 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     }
 
     @Override
-    public Point bestNeighour(Point point) {
+    public Point bestNeighour(Point point, int k) {
         Point point2;
         for( int i = 0 ; i < 1000 ; ++i ){
-            double x1_2 = point.getX1() + generator.getRandomDouble();
-            double x2_2 = point.getX1() + generator.getRandomDouble();
+            double x1_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
+            double x2_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
             point2 = new Point(x1_2, x2_2);
             if( threeHumpCamel(point2) < threeHumpCamel(point) ){
                 point = point2;
