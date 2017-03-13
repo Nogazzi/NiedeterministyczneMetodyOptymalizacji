@@ -5,7 +5,7 @@ package variable.neighbour.search;
  */
 public interface VariableNeighbourSearch {
     public Point doSearch();
-    public Point shake(Point point, double delta);
+    public Point shake(Point point, int k);
     public PointAndIndexK neighbourChange(Point point1, Point point2, int k);
     public Point VND(Point point, int k_max);
     public void setDelta(int deltasAmount);

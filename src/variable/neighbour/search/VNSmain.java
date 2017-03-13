@@ -8,6 +8,7 @@ import generatory.RozkladJednostajny;
  */
 public class VNSmain {
     public static void main(String[] args){
+        long time = System.currentTimeMillis();
         RandomGenerator generator = new RozkladJednostajny();
         double startX1 = generator.getRandomDouble()*5;
         double startX2 = generator.getRandomDouble()*5;
@@ -20,5 +21,7 @@ public class VNSmain {
 
         VariableNeighbourSearch jednostajny = new VariableNeighbourSearchJednostajny(startX1, startX2, deltasAmount);
         System.out.println(jednostajny.doSearch());
+        long duration = System.currentTimeMillis() - time;
+        System.out.println("Czas obliczeń: " + duration/1000);
     }
 }

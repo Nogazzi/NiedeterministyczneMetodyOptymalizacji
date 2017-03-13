@@ -33,9 +33,9 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     }
 
     @Override
-    public Point shake(Point point, double delta) {
-        double x1 = point.getX1() + generator.getRandomDouble(delta);
-        double x2 = point.getX2() + generator.getRandomDouble(delta);
+    public Point shake(Point point, int k) {
+        double x1 = point.getX1() + generator.getRandomDouble(deltaTab[k]);
+        double x2 = point.getX2() + generator.getRandomDouble(deltaTab[k]);
         return new Point(x1, x2);
     }
 
@@ -78,12 +78,12 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     public double threeHumpCamel(Point point) {
         double x1 = point.getX1();
         double x2 = point.getX2();
-        System.out.println("Three hump camel:");
+        /*System.out.println("Three hump camel:");
         System.out.println("x1: " + x1);
-        System.out.println("x2: " + x2);
-        if( x1 < -5.0d || x1 > 5.0d || x2 < -5.0d || x2 > 5.0d ){
+        System.out.println("x2: " + x2);*/
+        /*if( x1 < -5.0d || x1 > 5.0d || x2 < -5.0d || x2 > 5.0d ){
             throw new ThreeHumpCamelInputException();
-        }
+        }*/
         double result = 2.0d*x1*x1 - 1.05d*x1*x1*x1*x1 + (x1*x1*x1*x1*x1*x1)/6.0d + x1*x2 + x2*x2;
         return result;
     }
@@ -96,7 +96,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
         for( int i = 0 ; i < iloscProb ; ++i ){
             int k = 0;
             while( k < k_max ){
-                point1 = shake(point, deltaTab[k]);
+                point1 = shake(point, k);
                 point2 = VND(point1, k_max);
 
                 PointAndIndexK pointAndIndexK = neighbourChange(point, point2, k);
@@ -114,7 +114,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
         Point point1;
         int k = 0;
         while( k < k_max ){
-            point1 = shake(point, deltaTab[k]);
+            point1 = shake(point, k);
 
             PointAndIndexK pointAndIndexK = neighbourChange(point, point1, k);
             point = pointAndIndexK.getPoint();
@@ -127,8 +127,8 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     public Point bestNeighour(Point point) {
         Point point2;
         for( int i = 0 ; i < 1000 ; ++i ){
-            double x1_2 = generator.getRandomDouble();
-            double x2_2 = generator.getRandomDouble();
+            double x1_2 = point.getX1() + generator.getRandomDouble();
+            double x2_2 = point.getX1() + generator.getRandomDouble();
             point2 = new Point(x1_2, x2_2);
             if( threeHumpCamel(point2) < threeHumpCamel(point) ){
                 point = point2;
