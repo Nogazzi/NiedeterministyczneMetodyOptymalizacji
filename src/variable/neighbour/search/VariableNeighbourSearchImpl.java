@@ -14,6 +14,9 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     private double[] deltaTab;
     private final int iloscProb = 1000;
     private final Point initPoint;
+
+    double[] resultsTab = new double[iloscProb];
+
 /*
     public VariableNeighbourSearchImpl(){
         setDelta(this.k_max);
@@ -103,6 +106,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
                 point = pointAndIndexK.getPoint();
                 k = pointAndIndexK.getIndexK();
             }
+            resultsTab[i] = threeHumpCamel(point);
         }
 
         return point;
@@ -125,7 +129,7 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     @Override
     public Point bestNeighour(Point point, int k) {
         Point point2;
-        for( int i = 0 ; i < 1000 ; ++i ){
+        for( int i = 0 ; i < 100 ; ++i ){
             double x1_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
             double x2_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
             point2 = new Point(x1_2, x2_2);
@@ -134,6 +138,10 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
             }
         }
         return point;
+    }
+
+    public double[] getResultsTab(){
+        return this.resultsTab;
     }
 
 

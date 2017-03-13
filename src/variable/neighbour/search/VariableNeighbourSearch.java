@@ -13,4 +13,5 @@ public interface VariableNeighbourSearch {
     public Point GVNS(Point point, int k_max);
     public Point RVNS(Point point, int k_max);
     public Point bestNeighour(Point point, int k);
+    public double[] getResultsTab();
 }
