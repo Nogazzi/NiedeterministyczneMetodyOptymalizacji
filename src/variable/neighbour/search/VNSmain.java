@@ -22,25 +22,24 @@ public class VNSmain {
         double startX1 = generator.getRandomDouble()*5;
         double startX2 = generator.getRandomDouble()*5;
         int k_max = 5;
-        VariableNeighbourSearch cauchy = new VariableNeighbourSearchCauchy(startX1, startX2, k_max);
-        System.out.println(cauchy.doSearch());
+        VariableNeighbourSearch cauchy;
 
-        VariableNeighbourSearch normalny = new VariableNeighbourSearchNormalny(startX1, startX2, k_max);
-        System.out.println(normalny.doSearch());
+        VariableNeighbourSearch normalny;
 
-        VariableNeighbourSearch jednostajny = new VariableNeighbourSearchJednostajny(startX1, startX2, k_max);
-        System.out.println(jednostajny.doSearch());
+        VariableNeighbourSearch jednostajny;
 
-        long duration = System.currentTimeMillis() - time;
-        System.out.println("Czas obliczeń: " + duration/1000);
+
 
         for( int i = 0 ; i < iloscEksperymentow ; ++i ){
+            cauchy = new VariableNeighbourSearchCauchy(startX1, startX2, k_max);
             cauchy.doSearch();
             sumaCauchy[i] = cauchy.getResultsTab();
 
+            normalny = new VariableNeighbourSearchNormalny(startX1, startX2, k_max);
             normalny.doSearch();
             sumaNormalny[i] = normalny.getResultsTab();
 
+            jednostajny = new VariableNeighbourSearchJednostajny(startX1, startX2, k_max);
             jednostajny.doSearch();
             sumaJednostajny[i] = jednostajny.getResultsTab();
         }
@@ -51,7 +50,10 @@ public class VNSmain {
 
         generateSimulationSumTxtFile(getSumOfResults(sumaCauchy), "VNS_Suma_Cauchy.txt");
         generateSimulationSumTxtFile(getSumOfResults(sumaJednostajny), "VNS_Suma_Jednostajny.txt");
-        generateSimulationSumTxtFile(normalny.getResultsTab(), "VNS_Suma_Normalny.txt");
+        generateSimulationSumTxtFile(getSumOfResults(sumaNormalny), "VNS_Suma_Normalny.txt");
+
+        long duration = System.currentTimeMillis() - time;
+        System.out.println("Czas obliczeń: " + duration/1000);
     }
 
     public static double[] getSumOfResults(double[][] searchResults){

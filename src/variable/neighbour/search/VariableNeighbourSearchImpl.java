@@ -69,10 +69,10 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     public void setDelta(int deltasAmount) {
         this.deltaTab = new double[deltasAmount];
         double deltaTmp = 1/(double)deltasAmount;
-        System.out.println("Podzielono na " + deltasAmount + " odcinków");
+        //System.out.println("Podzielono na " + deltasAmount + " odcinków");
         for(int i = deltasAmount-1 ; i >= 0 ; --i ){
             this.deltaTab[i] = (i+1)*deltaTmp;
-            System.out.println(this.deltaTab[i]);
+            //System.out.println(this.deltaTab[i]);
         }
     }
 
