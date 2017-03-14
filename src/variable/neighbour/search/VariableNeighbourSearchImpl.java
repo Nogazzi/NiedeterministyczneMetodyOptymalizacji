@@ -115,13 +115,15 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     @Override
     public Point RVNS(Point point, int k_max) {
         Point point1;
-        int k = 0;
-        while( k < k_max ){
-            point1 = shake(point, k);
+        for( int i = 0 ; i < iloscProb ; ++i ) {
+            int k = 0;
+            while (k < k_max) {
+                point1 = shake(point, k);
 
-            PointAndIndexK pointAndIndexK = neighbourChange(point, point1, k);
-            point = pointAndIndexK.getPoint();
-            k = pointAndIndexK.getIndexK();
+                PointAndIndexK pointAndIndexK = neighbourChange(point, point1, k);
+                point = pointAndIndexK.getPoint();
+                k = pointAndIndexK.getIndexK();
+            }
         }
         return point;
     }
