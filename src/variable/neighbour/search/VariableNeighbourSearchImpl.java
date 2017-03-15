@@ -131,15 +131,16 @@ public class VariableNeighbourSearchImpl implements VariableNeighbourSearch{
     @Override
     public Point bestNeighour(Point point, int k) {
         Point point2;
-        for( int i = 0 ; i < 100 ; ++i ){
+        Point bestPoint = new Point(point.getX1(), point.getX2());
+        for( int i = 0 ; i < 10 ; ++i ){
             double x1_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
             double x2_2 = point.getX1() + generator.getRandomDouble()*deltaTab[k];
             point2 = new Point(x1_2, x2_2);
-            if( threeHumpCamel(point2) < threeHumpCamel(point) ){
-                point = point2;
+            if( threeHumpCamel(point2) < threeHumpCamel(bestPoint) ){
+                bestPoint = point2;
             }
         }
-        return point;
+        return bestPoint;
     }
 
     public double[] getResultsTab(){

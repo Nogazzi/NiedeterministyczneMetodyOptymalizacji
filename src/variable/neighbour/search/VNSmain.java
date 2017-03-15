@@ -91,8 +91,9 @@ public class VNSmain {
             bw = new PrintWriter(fw);
             for( int step = 0 ; step < searchResults[0].length ; ++step ){
                 for( int simulation = 0 ; simulation < searchResults.length ; ++simulation ){
-
-                    bw.print(searchResults[simulation][step] + "\t");
+                    bw.print(String.format("%.8f", searchResults[simulation][step]));
+                    bw.print("\t");
+                    //bw.print(searchResults[simulation][step] + "\t");
                 }
                 bw.print("\n");
             }
