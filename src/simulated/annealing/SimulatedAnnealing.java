@@ -14,9 +14,10 @@ public class SimulatedAnnealing {
     private int N = 50;
     private double T1 = 100.0d;
     private double Tn = 1.0d;
-
-    private int Lk;
-    private int Tk;
+    double a = (T1 - Tn)*(N + 1)/N;
+    private double Lk = 5;
+    private double Tk;
+    private double alfa = 0.97;
 
     Point pointX;
     Point pointY;
@@ -24,34 +25,38 @@ public class SimulatedAnnealing {
     private int iterationsNumber;
 
     Random random = new Random();
+    double results[];
 
 
-
-    public SimulatedAnnealing(int iterationsNumber){
+    public SimulatedAnnealing(int iterationsNumber, double x1, double x2){
         k = 1;
         this.iterationsNumber = iterationsNumber;
+        results = new double[iterationsNumber];
+        pointX = new Point(x1, x2);
     }
 
     public void simulateAnnealing(){
-        while( k <= iterationsNumber ){ //repeat until termination condition met
+        int i = 0;
+        k = 1;
+        while( i < iterationsNumber ){ //repeat until termination condition met
 
             for( int l = 0 ; l < Lk ; ++l ){
                 //select  y among N(x)
-
+                pointY = bestNeighour(pointX);
                 //if f(y) <= f(x): x=y
-                if( threeHumpCamel(pointY) < threeHumpCamel(pointX) ){
+                if( threeHumpCamel(pointY) <= threeHumpCamel(pointX) ){
                     pointX = pointY;
                 }else{
                     //if exp(...)>U(0,1): x=y
-                    if( Math.exp( threeHumpCamel(pointX)-threeHumpCamel(pointY) / Tk) > random.nextDouble() ){
+                    if( Math.exp( threeHumpCamel(pointX)-threeHumpCamel(pointY) / computeTk(k)) > random.nextDouble() ){
                         pointX = pointY;
                     }
                 }
             }
-            Lk = calculateLength(Lk);
+            //Lk = calculateLength(Lk);
             Tk = calculateControl(Tk);
-
-            k++;
+            results[i] = threeHumpCamel(pointX);
+            i++;
         }
     }
 
@@ -82,12 +87,30 @@ public class SimulatedAnnealing {
     }
 
     public double calculateControl(double Tk){
+        return Tk*alfa;
+    }
 
-        double a = (T1 - Tn)(N + 1)/N;
+    public double computeTk(int k){
+
         double Tk = T1 - Math.pow(k, a);
-
-
-
         return Tk;
+    }
+
+    public Point bestNeighour(Point point) {
+        Point point2;
+        Point bestPoint = new Point(point.getX1(), point.getX2());
+        for( int i = 0 ; i < 10 ; ++i ){
+            double x1_2 = point.getX1() + random.nextDouble();
+            double x2_2 = point.getX1() + random.nextDouble();
+            point2 = new Point(x1_2, x2_2);
+            if( threeHumpCamel(point2) < threeHumpCamel(bestPoint) ){
+                bestPoint = point2;
+            }
+        }
+        return bestPoint;
+    }
+
+    public double[] getResults(){
+        return this.results;
     }
 }
