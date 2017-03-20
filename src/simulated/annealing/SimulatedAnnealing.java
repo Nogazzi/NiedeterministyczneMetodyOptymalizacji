@@ -48,14 +48,15 @@ public class SimulatedAnnealing {
                     pointX = pointY;
                 }else{
                     //if exp(...)>U(0,1): x=y
-                    if( Math.exp( threeHumpCamel(pointX)-threeHumpCamel(pointY) / computeTk(k)) > random.nextDouble() ){
+                    if( Math.exp( threeHumpCamel(pointX)-threeHumpCamel(pointY) / Tk) > random.nextDouble() ){
                         pointX = pointY;
                     }
                 }
             }
             //Lk = calculateLength(Lk);
-            Tk = calculateControl(Tk);
+            Tk = computeTk(k);
             results[i] = threeHumpCamel(pointX);
+            k++;
             i++;
         }
     }
