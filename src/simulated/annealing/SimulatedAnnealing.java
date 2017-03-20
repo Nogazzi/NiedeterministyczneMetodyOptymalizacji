@@ -42,7 +42,7 @@ public class SimulatedAnnealing {
 
             for( int l = 0 ; l < Lk ; ++l ){
                 //select  y among N(x)
-                pointY = bestNeighour(pointX);
+                pointY = generateNeighour(pointX);
                 //if f(y) <= f(x): x=y
                 if( threeHumpCamel(pointY) <= threeHumpCamel(pointX) ){
                     pointX = pointY;
@@ -96,18 +96,12 @@ public class SimulatedAnnealing {
         return Tk;
     }
 
-    public Point bestNeighour(Point point) {
-        Point point2;
-        Point bestPoint = new Point(point.getX1(), point.getX2());
-        for( int i = 0 ; i < 10 ; ++i ){
-            double x1_2 = point.getX1() + random.nextDouble();
-            double x2_2 = point.getX1() + random.nextDouble();
-            point2 = new Point(x1_2, x2_2);
-            if( threeHumpCamel(point2) < threeHumpCamel(bestPoint) ){
-                bestPoint = point2;
-            }
-        }
-        return bestPoint;
+    public Point generateNeighour(Point point) {
+
+        double x1_2 = point.getX1() + random.nextDouble()*2-1;
+        double x2_2 = point.getX1() + random.nextDouble()*2-1;
+
+        return new Point(x1_2, x2_2);
     }
 
     public double[] getResults(){
