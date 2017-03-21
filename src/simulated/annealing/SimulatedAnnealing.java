@@ -40,7 +40,7 @@ public class SimulatedAnnealing {
         k = 1;
         while( i < iterationsNumber ){ //repeat until termination condition met
             for( int k = 0 ; k < N ; ++k) {
-                for (int l = 0; l < Lk; ++l) {
+                //for (int l = 0; l < Lk; ++l) {
                     //select  y among N(x)
                     pointY = generateNeighour(pointX);
                     //if f(y) <= f(x): x=y
@@ -52,7 +52,7 @@ public class SimulatedAnnealing {
                             pointX = pointY;
                         }
                     }
-                }
+                //}
                 //Lk = calculateLength(Lk);
                 Tk = computeTk(k);
 
