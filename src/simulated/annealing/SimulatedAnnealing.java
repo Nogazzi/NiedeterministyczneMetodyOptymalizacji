@@ -39,25 +39,26 @@ public class SimulatedAnnealing {
         int i = 0;
         k = 1;
         while( i < iterationsNumber ){ //repeat until termination condition met
-
-            for( int l = 0 ; l < Lk ; ++l ){
-                //select  y among N(x)
-                pointY = generateNeighour(pointX);
-                //if f(y) <= f(x): x=y
-                if( threeHumpCamel(pointY) <= threeHumpCamel(pointX) ){
-                    pointX = pointY;
-                }else{
-                    //if exp(...)>U(0,1): x=y
-                    if( Math.exp( threeHumpCamel(pointX)-threeHumpCamel(pointY) / Tk) > random.nextDouble() ){
+            for( int k = 0 ; k < N ; ++k) {
+                for (int l = 0; l < Lk; ++l) {
+                    //select  y among N(x)
+                    pointY = generateNeighour(pointX);
+                    //if f(y) <= f(x): x=y
+                    if (threeHumpCamel(pointY) <= threeHumpCamel(pointX)) {
                         pointX = pointY;
+                    } else {
+                        //if exp(...)>U(0,1): x=y
+                        if (Math.exp(threeHumpCamel(pointX) - threeHumpCamel(pointY) / Tk) > random.nextDouble()) {
+                            pointX = pointY;
+                        }
                     }
                 }
+                //Lk = calculateLength(Lk);
+                Tk = computeTk(k);
+
             }
-            //Lk = calculateLength(Lk);
-            Tk = computeTk(k);
             results[i] = threeHumpCamel(pointX);
-            k++;
-            i++;
+            ++i;
         }
     }
 
@@ -92,17 +93,19 @@ public class SimulatedAnnealing {
     }
 
     public double computeTk(int k){
-
-        double Tk = T1 - Math.pow(k, a);
+        double Tk = a / (k+1) + T1 - a;
         return Tk;
     }
 
     public Point generateNeighour(Point point) {
+        int pointsAmout = 10;
+        Point[] points = new Point[pointsAmout];
+        for( int i = 0 ; i < points.length ; ++i ){
+            points[i] = new Point(point.getX1() + random.nextDouble()*2-1, point.getX2() + random.nextDouble()*2-1);
+        }
 
-        double x1_2 = point.getX1() + random.nextDouble()*2-1;
-        double x2_2 = point.getX1() + random.nextDouble()*2-1;
 
-        return new Point(x1_2, x2_2);
+        return points[(int)random.nextDouble()*pointsAmout];
     }
 
     public double[] getResults(){
