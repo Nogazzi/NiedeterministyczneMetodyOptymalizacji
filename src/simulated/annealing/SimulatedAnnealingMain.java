@@ -17,7 +17,7 @@ public class SimulatedAnnealingMain {
         double x1 = random.nextDouble()*10-5;
         double x2 = random.nextDouble()*10-5;
         for( int i = 0 ; i < numberOfExperiments ; ++i ){
-            SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing(1000, x1, x2);
+            SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing(iterationsInExperiment, x1, x2);
             simulatedAnnealing.simulateAnnealing();
             results[i] = simulatedAnnealing.getResults();
         }
