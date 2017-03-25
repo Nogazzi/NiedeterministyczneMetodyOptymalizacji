@@ -10,11 +10,16 @@ import java.util.ArrayList;
  */
 public class EvolutionaryComputationMain {
 
-    public final int firstPopulationSize = 40;
-    public final RandomGenerator generator = new RozkladJednostajny();
+    
+    
 
     public static void main(String[] args){
-        ArrayList<Individual> population = new ArrayList<Individual>();
+        final int firstPopulationSize = 40;
+        ArrayList<Individual> population = generatePopulation(firstPopulationSize);
+
+        for (Individual unit: population) {
+            System.out.println(unit);
+        }
 
     }
 
@@ -31,5 +36,7 @@ public class EvolutionaryComputationMain {
         for( int i = 0 ; i < population.size() ; ++i ){
             population.get(i);
         }
+        return null;
     }
+
 }
