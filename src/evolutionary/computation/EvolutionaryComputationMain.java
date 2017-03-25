@@ -28,8 +28,14 @@ public class EvolutionaryComputationMain {
         ArrayList<Individual> newPopulation = new ArrayList<Individual>();
         newPopulation.addAll(selectedPopulation);
         newPopulation.addAll(mutatedPopulation);
-
-
+        System.out.println("Pierwsze pokolenie:");
+        for ( Individual individual: population) {
+            System.out.println( (newPopulation.indexOf(individual)+1) + " - " + individual);
+        }
+        System.out.println("Nowe pokolenie:");
+        for ( Individual individual: newPopulation) {
+            System.out.println( (newPopulation.indexOf(individual)+1) + " - " + individual);
+        }
     }
 
     private static ArrayList<Individual> generatePopulation(final int amountOfIndividuals){
