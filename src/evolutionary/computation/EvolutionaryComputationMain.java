@@ -14,27 +14,30 @@ public class EvolutionaryComputationMain {
     
     private static double sigma = 1.0d;
     private static double tau = 1.0d;
-    private static double tauPrin = 1.0d;
+    final static int genrationsAmount = 1000;
+    final static int firstPopulationSize = 40;
 
     public static void main(String[] args){
-        final int firstPopulationSize = 40;
+
+        simulate();
+    }
+
+    private static void simulate(){
         //generate population
         ArrayList<Individual> population = generatePopulation(firstPopulationSize);
-        //recombinate population - weź tych lepszych
-        ArrayList<Individual> selectedPopulation = selectPopulation(population);
-        //mutate selected - stworz potomkow wybrancow
-        ArrayList<Individual> mutatedPopulation = mutatePopulation(selectedPopulation);
-        //populacja wybranych i ich potomkow
-        ArrayList<Individual> newPopulation = new ArrayList<Individual>();
-        newPopulation.addAll(selectedPopulation);
-        newPopulation.addAll(mutatedPopulation);
-        System.out.println("Pierwsze pokolenie:");
-        for ( Individual individual: population) {
-            System.out.println( (newPopulation.indexOf(individual)+1) + " - " + individual);
-        }
-        System.out.println("Nowe pokolenie:");
-        for ( Individual individual: newPopulation) {
-            System.out.println( (newPopulation.indexOf(individual)+1) + " - " + individual);
+        for( int i = 0 ; i < genrationsAmount ; ++i ){
+
+            //recombinate population - weź tych lepszych
+            ArrayList<Individual> selectedPopulation = selectPopulation(population);
+            //mutate selected - stworz potomkow wybrancow
+            ArrayList<Individual> mutatedPopulation = mutatePopulation(selectedPopulation);
+            //populacja wybranych i ich potomkow
+            ArrayList<Individual> newPopulation = new ArrayList<Individual>();
+            newPopulation.addAll(selectedPopulation);
+            newPopulation.addAll(mutatedPopulation);
+
+            //replace population
+            population = newPopulation;
         }
     }
 
@@ -77,9 +80,9 @@ public class EvolutionaryComputationMain {
     private static Individual mutateIndividual(final Individual individual/*, final double sigma*/){
         Random generator = new Random();
         final Individual newIndividual;
-        sigma = sigma * Math.exp(tau*generator.nextDouble() + tauPrin*generator.nextDouble());
-        double newX1 = individual.getX1() + generator.nextDouble()*sigma;
-        double newX2 = individual.getX2() + generator.nextDouble()*sigma;
+        sigma = sigma * Math.exp(tau*generator.nextGaussian());
+        double newX1 = individual.getX1() + generator.nextGaussian()*sigma;
+        double newX2 = individual.getX2() + generator.nextGaussian()*sigma;
         newIndividual = new Individual(newX1, newX2);
         return newIndividual;
     }
