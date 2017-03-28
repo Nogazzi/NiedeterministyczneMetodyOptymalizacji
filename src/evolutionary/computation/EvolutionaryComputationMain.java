@@ -3,6 +3,9 @@ package evolutionary.computation;
 import generatory.RandomGenerator;
 import generatory.RozkladJednostajny;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,8 +17,8 @@ public class EvolutionaryComputationMain {
     
     private static double sigma = 1.0d;
     private static double tau = 1.0d;
-    final static int genrationsAmount = 1000;
-    final static int firstPopulationSize = 40;
+    final static int generationsAmount = 1000;
+    final static int populationSize = 40;
 
     public static void main(String[] args){
 
@@ -24,8 +27,9 @@ public class EvolutionaryComputationMain {
 
     private static void simulate(){
         //generate population
-        ArrayList<Individual> population = generatePopulation(firstPopulationSize);
-        for( int i = 0 ; i < genrationsAmount ; ++i ){
+        ArrayList<Individual> population = generatePopulation(populationSize);
+        double[] results = new double[generationsAmount];
+        for( int i = 0 ; i < generationsAmount ; ++i ){
 
             //recombinate population - weź tych lepszych
             ArrayList<Individual> selectedPopulation = selectPopulation(population);
@@ -38,7 +42,13 @@ public class EvolutionaryComputationMain {
 
             //replace population
             population = newPopulation;
+            results[i] = 0;
+            for( int j = 0 ; j < populationSize ; ++j ){
+                results[i] += population.get(j).getResult();
+            }
         }
+        saveArray(results, "evolutionaryComputation.txt");
+
     }
 
     private static ArrayList<Individual> generatePopulation(final int amountOfIndividuals){
@@ -85,6 +95,23 @@ public class EvolutionaryComputationMain {
         double newX2 = individual.getX2() + generator.nextGaussian()*sigma;
         newIndividual = new Individual(newX1, newX2);
         return newIndividual;
+    }
+
+    public static void saveArray(double[] array, String filename){
+        PrintWriter bw;
+        FileWriter fw;
+        try {
+            fw = new FileWriter(filename);
+            bw = new PrintWriter(fw);
+            for (double line: array) {
+                //System.out.println(line);
+                bw.println(String.format("%.8f", line));
+            }
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
