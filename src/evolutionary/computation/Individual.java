@@ -15,6 +15,18 @@ public class Individual {
     }
 
     private void evaluate(){
+        if( x1 < -5 ){
+            x1 = -5;
+        }
+        if( x1 > 5){
+            x1 = 5;
+        }
+        if( x2 < -5 ){
+            x2 = -5;
+        }
+        if( x2 > 5 ){
+            x2  = 5;
+        }
         result = 2.0d*x1*x1 - 1.05d*x1*x1*x1*x1 + (x1*x1*x1*x1*x1*x1)/6.0d + x1*x2 + x2*x2;
     }
 
