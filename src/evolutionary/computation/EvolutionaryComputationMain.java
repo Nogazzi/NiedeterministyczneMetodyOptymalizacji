@@ -19,7 +19,7 @@ public class EvolutionaryComputationMain {
     public static void main(String[] args){
 
         final int experimentsAmount = 100;
-        final int populationSize = 10;
+        final int populationSize = 20;
         int longestResultTabSize = 0;
         int shortestResultTabSize = Integer.MAX_VALUE;
         ArrayList<Double>[] resultsTab = new ArrayList[experimentsAmount];

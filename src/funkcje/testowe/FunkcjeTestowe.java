@@ -1,30 +1,32 @@
-package evolutionary.computation;
+package funkcje.testowe;
 
+import evolutionary.computation.*;
+import evolutionary.computation.Individual;
 import generatory.RandomGenerator;
 import generatory.RozkladJednostajny;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Nogaz on 31.03.2017.
+ * Created by Nogaz on 02.04.2017.
  */
-public class EvolutionComputingSimulator {
-
+public class FunkcjeTestowe {
+    private final int experimentsAmount;
     private final int terminationCondition = 1000;
-    private final int populationSize;
+    private final int populationSize = 40;
     private final double mutationProbability = 0.7d;
     private double sigma = 0.8d;
     private final double epsilon = 0.002d;
     private double tau = 0.01d;
+
     private int counter;
+
     private ArrayList<Individual> population;
     private final ArrayList<Double> results = new ArrayList<Double>();
 
-    public EvolutionComputingSimulator(int populationSize){
-        this.populationSize = populationSize;
+    public FunkcjeTestowe(int experimentsAmount){
+        this.experimentsAmount = experimentsAmount;
     }
 
     public void doSimulation(){
@@ -33,13 +35,13 @@ public class EvolutionComputingSimulator {
         while( counter < terminationCondition ){
 
             //selection
-            ArrayList<Individual> selectedPopulation = selectPopulation(population);
+            ArrayList<evolutionary.computation.Individual> selectedPopulation = selectPopulation(population);
             //recombination
 
             //mutation
-            ArrayList<Individual> mutatedPopulation = mutatePopulation(selectedPopulation);
+            ArrayList<evolutionary.computation.Individual> mutatedPopulation = mutatePopulation(selectedPopulation);
             //new population
-            population = new ArrayList<Individual>();
+            population = new ArrayList<evolutionary.computation.Individual>();
             population.addAll(selectedPopulation);
             population.addAll(mutatedPopulation);
             //get result
