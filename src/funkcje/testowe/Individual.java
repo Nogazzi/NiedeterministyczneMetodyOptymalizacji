@@ -68,7 +68,7 @@ public class Individual {
         for( int i = 0 ; i < n ; ++i ){
             for( int j = 0 ; j < n ; ++j ){
 
-                result += pow(100*pow(pow(xTab[i], 2) - xTab[j], 2) + pow(pow(1-xTab[j],2),2),2 )/4000.0d - cos(100*pow(pow(xTab[i],2)-xTab[j],2) + pow(1-xTab[j], 2)) + 1;
+                result += pow(100*pow(pow(xTab[i], 2) - xTab[j], 2) + pow(1-xTab[j],2),2 )/4000.0d - cos(100*pow(pow(xTab[i],2)-xTab[j],2) + pow(1-xTab[j], 2)) + 1;
             }
         }
 
