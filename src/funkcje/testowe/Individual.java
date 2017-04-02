@@ -26,12 +26,6 @@ public class Individual {
             if( xTab[i] > 32.768d){
                 xTab[i] = 32.768d;
             }
-            if( xTab[i] < -32.768d){
-                xTab[i] = -32.768d;
-            }
-            if( xTab[i] > 32.768d){
-                xTab[i] = 32.768d;
-            }
         }
 
         double sumaXi = 0;
@@ -57,12 +51,6 @@ public class Individual {
             if( xTab[i] > 10.24d){
                 xTab[i] = 10.24d;
             }
-            if( xTab[i] < -10.24d){
-                xTab[i] = -10.24d;
-            }
-            if( xTab[i] > 10.24d){
-                xTab[i] = 10.24d;
-            }
         }
 
         for( int i = 0 ; i < n ; ++i ){
@@ -80,12 +68,6 @@ public class Individual {
         double k = 10.d;
         double result = 0;
         for(int i = 0 ; i < n ; i++){
-            if( xTab[i] < -10.0d){
-                xTab[i] = -10.0d;
-            }
-            if( xTab[i] > 10.0d){
-                xTab[i] = 10.0d;
-            }
             if( xTab[i] < -10.0d){
                 xTab[i] = -10.0d;
             }
