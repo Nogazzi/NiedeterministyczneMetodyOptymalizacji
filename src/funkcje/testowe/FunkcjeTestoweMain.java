@@ -15,6 +15,7 @@ public class FunkcjeTestoweMain {
                 ackleyResults[i/2] += funkcjeTestoweAckley.getBestResult();
             }
             ackleyResults[i/2] = ackleyResults[i/2]/5;
+            System.out.println("Ackley Q dla n=" + i + " : " + ackleyResults[i/2]);
         }
 
         FunkcjeTestowe funkcjeTestoweWhitley = new FunkcjeWhitley(experimentsAmount);
@@ -26,6 +27,7 @@ public class FunkcjeTestoweMain {
                 whitleyResults[i/2] += funkcjeTestoweWhitley.getBestResult();
             }
             whitleyResults[i/2] = whitleyResults[i/2]/5;
+            System.out.println("Whitley Q dla n=" + i + " : " + whitleyResults[i/2]);
         }
 
         FunkcjeTestowe funkcjeTestoweLevy = new FunkcjeLevy(experimentsAmount);
@@ -37,6 +39,7 @@ public class FunkcjeTestoweMain {
                 levyResults[i/2] += funkcjeTestoweLevy.getBestResult();
             }
             levyResults[i/2] = levyResults[i/2]/5;
+            System.out.println("Levy Q dla n=" + i + " : " + levyResults[i/2]);
         }
     }
 }
