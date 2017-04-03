@@ -19,6 +19,7 @@ public class FunkcjeWhitley extends FunkcjeTestowe {
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
             Individual individual = new Individual(n);
+            individual.setBounds(whitleyBound);
             individual.evaluateByWhitley();
             population.add(individual);
             counter++;
@@ -35,6 +36,7 @@ public class FunkcjeWhitley extends FunkcjeTestowe {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
                 Individual individual = new Individual(n);
+                individual.setBounds(whitleyBound);
                 individual.evaluateByWhitley();
                 mutatedPopulation.add(individual);
                 counter++;
@@ -51,6 +53,7 @@ public class FunkcjeWhitley extends FunkcjeTestowe {
             sigma = epsilon;
         }
         newIndividual = new Individual(individual, sigma);
+        individual.setBounds(whitleyBound);
         newIndividual.evaluateByWhitley();
         counter++;
         return newIndividual;

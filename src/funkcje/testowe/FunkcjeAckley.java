@@ -18,6 +18,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
             Individual individual = new Individual(n);
+            individual.setBounds(ackleyBound);
             individual.evaluateByAckley();
             population.add(individual);
             counter++;
@@ -34,6 +35,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
                 Individual individual = new Individual(n);
+                individual.setBounds(ackleyBound);
                 individual.evaluateByAckley();
                 mutatedPopulation.add(individual);
                 counter++;
@@ -50,6 +52,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
             sigma = epsilon;
         }
         newIndividual = new Individual(individual, sigma);
+        individual.setBounds(ackleyBound);
         newIndividual.evaluateByAckley();
         counter++;
         return newIndividual;

@@ -5,6 +5,7 @@ import generatory.RandomGenerator;
 import generatory.RozkladJednostajny;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -22,6 +23,10 @@ public abstract class FunkcjeTestowe implements FunkcjeTestoweInterface{
     protected int counter;
 
     protected int n;
+
+    protected double ackleyBound = 32.768d;
+    protected double levyBound = 10.0d;
+    protected double whitleyBound = 10.24d;
 
     protected ArrayList<Individual> population;
 
@@ -48,6 +53,7 @@ public abstract class FunkcjeTestowe implements FunkcjeTestoweInterface{
             population = new ArrayList<Individual>();
             population.addAll(selectedPopulation);
             population.addAll(mutatedPopulation);
+            Collections.shuffle(population);
             //get result
         }
         bestResult = getPopulationBestResult();

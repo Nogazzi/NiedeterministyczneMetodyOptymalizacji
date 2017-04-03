@@ -29,6 +29,7 @@ public class Individual {
     public Individual(Individual individual, double sigma){
         double[] tab = individual.getxTab();
         n = tab.length;
+        xTab = new double[n];
         Random generator = new Random();
         for(int i = 0 ; i < n ; ++i ){
             xTab[i] =  tab[i] + generator.nextGaussian()*sigma;
@@ -98,6 +99,11 @@ public class Individual {
 
     public double getResult(){
         return this.result;
+    }
+
+    public void setBounds(double bound){
+        this.minX = (-1)*abs(bound);
+        this.maxX = abs(bound);
     }
 
     protected double getXi(int i){

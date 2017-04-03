@@ -20,6 +20,7 @@ public class FunkcjeLevy extends FunkcjeTestowe {
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
             Individual individual = new Individual(n);
+            individual.setBounds(levyBound);
             individual.evaluateByLevy();
             population.add(individual);
             counter++;
@@ -36,6 +37,7 @@ public class FunkcjeLevy extends FunkcjeTestowe {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
                 Individual individual = new Individual(n);
+                individual.setBounds(levyBound);
                 individual.evaluateByLevy();
                 mutatedPopulation.add(individual);
                 counter++;
@@ -52,6 +54,7 @@ public class FunkcjeLevy extends FunkcjeTestowe {
             sigma = epsilon;
         }
         newIndividual = new Individual(individual, sigma);
+        individual.setBounds(levyBound);
         newIndividual.evaluateByLevy();
         counter++;
         return newIndividual;

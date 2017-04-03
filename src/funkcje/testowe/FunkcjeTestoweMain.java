@@ -12,10 +12,10 @@ public class FunkcjeTestoweMain {
             for( int j = 0 ; j < experimentsAmount ; ++j ) {
                 //100 eksperymentow dla kazdego n = 2, 4, 6, 8, 10
                 funkcjeTestoweAckley.doSimulation(i);
-                ackleyResults[i/2] += funkcjeTestoweAckley.getBestResult();
+                ackleyResults[i/2-1] += funkcjeTestoweAckley.getBestResult();
             }
-            ackleyResults[i/2] = ackleyResults[i/2]/5;
-            System.out.println("Ackley Q dla n=" + i + " : " + ackleyResults[i/2]);
+            ackleyResults[i/2-1] = ackleyResults[i/2-1]/5;
+            System.out.println("Ackley Q dla n=" + i + " : " + ackleyResults[i/2-1]);
         }
 
         FunkcjeTestowe funkcjeTestoweWhitley = new FunkcjeWhitley(experimentsAmount);
@@ -24,10 +24,10 @@ public class FunkcjeTestoweMain {
             for( int j = 0 ; j < experimentsAmount ; ++j ) {
                 //100 eksperymentow dla kazdego n = 2, 4, 6, 8, 10
                 funkcjeTestoweWhitley.doSimulation(i);
-                whitleyResults[i/2] += funkcjeTestoweWhitley.getBestResult();
+                whitleyResults[i/2-1] += funkcjeTestoweWhitley.getBestResult();
             }
-            whitleyResults[i/2] = whitleyResults[i/2]/5;
-            System.out.println("Whitley Q dla n=" + i + " : " + whitleyResults[i/2]);
+            whitleyResults[i/2-1] = whitleyResults[i/2-1]/5;
+            System.out.println("Whitley Q dla n=" + i + " : " + whitleyResults[i/2-1]);
         }
 
         FunkcjeTestowe funkcjeTestoweLevy = new FunkcjeLevy(experimentsAmount);
@@ -36,10 +36,10 @@ public class FunkcjeTestoweMain {
             for( int j = 0 ; j < experimentsAmount ; ++j ) {
                 //100 eksperymentow dla kazdego n = 2, 4, 6, 8, 10
                 funkcjeTestoweLevy.doSimulation(i);
-                levyResults[i/2] += funkcjeTestoweLevy.getBestResult();
+                levyResults[i/2-1] += funkcjeTestoweLevy.getBestResult();
             }
-            levyResults[i/2] = levyResults[i/2]/5;
-            System.out.println("Levy Q dla n=" + i + " : " + levyResults[i/2]);
+            levyResults[i/2-1] = levyResults[i/2-1]/5;
+            System.out.println("Levy Q dla n=" + i + " : " + levyResults[i/2-1]);
         }
     }
 }
