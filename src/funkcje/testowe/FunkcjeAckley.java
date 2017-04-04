@@ -10,15 +10,15 @@ import java.util.Random;
  * Created by Nogaz on 03.04.2017.
  */
 public class FunkcjeAckley extends FunkcjeTestowe {
-    public FunkcjeAckley(int experimentsAmount) {
-        super(experimentsAmount);
+    public FunkcjeAckley() {
+        super();
     }
     public ArrayList<Individual> generatePopulation(final int amountOfIndividuals){
         final RandomGenerator generator = new RozkladJednostajny();
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
-            Individual individual = new Individual(n);
-            individual.setBounds(ackleyBound);
+            Individual individual = new Individual(n, ackleyBound);
+            //individual.setBounds(ackleyBound);
             individual.evaluateByAckley();
             population.add(individual);
             counter++;
@@ -34,7 +34,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
             if( random.nextDouble() > mutationProbability ) {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
-                Individual individual = new Individual(n);
+                Individual individual = new Individual(n, ackleyBound);
                 individual.setBounds(ackleyBound);
                 individual.evaluateByAckley();
                 mutatedPopulation.add(individual);
@@ -51,7 +51,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
         if( sigma < epsilon ){
             sigma = epsilon;
         }
-        newIndividual = new Individual(individual, sigma);
+        newIndividual = new Individual(individual, ackleyBound, sigma);
         individual.setBounds(ackleyBound);
         newIndividual.evaluateByAckley();
         counter++;

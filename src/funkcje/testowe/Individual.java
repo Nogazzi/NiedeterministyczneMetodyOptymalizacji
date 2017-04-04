@@ -17,19 +17,23 @@ public class Individual {
     protected double maxX;
     protected double result;
 
-    public Individual(int n){
+    public Individual(int n, double bound){
         this.n = n;
         xTab = new double[n];
+        this.minX = (-1)*abs(bound);
+        this.maxX = abs(bound);
         Random random = new Random();
         for( int i = 0 ; i < n ; ++i ){
-            xTab[i] = random.nextDouble()*2*maxX-maxX;
+            xTab[i] = random.nextDouble()*2.0d*maxX-maxX;
         }
     }
 
-    public Individual(Individual individual, double sigma){
+    public Individual(Individual individual, double bound, double sigma){
         double[] tab = individual.getxTab();
         n = tab.length;
         xTab = new double[n];
+        this.minX = (-1)*abs(bound);
+        this.maxX = abs(bound);
         Random generator = new Random();
         for(int i = 0 ; i < n ; ++i ){
             xTab[i] =  tab[i] + generator.nextGaussian()*sigma;

@@ -11,14 +11,14 @@ import java.util.Random;
  */
 public class FunkcjeWhitley extends FunkcjeTestowe {
 
-    public FunkcjeWhitley(int experimentsAmount) {
-        super(experimentsAmount);
+    public FunkcjeWhitley() {
+        //super(experimentsAmount);
     }
     public ArrayList<Individual> generatePopulation(final int amountOfIndividuals){
         final RandomGenerator generator = new RozkladJednostajny();
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
-            Individual individual = new Individual(n);
+            Individual individual = new Individual(n, whitleyBound);
             individual.setBounds(whitleyBound);
             individual.evaluateByWhitley();
             population.add(individual);
@@ -35,7 +35,7 @@ public class FunkcjeWhitley extends FunkcjeTestowe {
             if( random.nextDouble() > mutationProbability ) {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
-                Individual individual = new Individual(n);
+                Individual individual = new Individual(n, whitleyBound);
                 individual.setBounds(whitleyBound);
                 individual.evaluateByWhitley();
                 mutatedPopulation.add(individual);
@@ -52,7 +52,7 @@ public class FunkcjeWhitley extends FunkcjeTestowe {
         if( sigma < epsilon ){
             sigma = epsilon;
         }
-        newIndividual = new Individual(individual, sigma);
+        newIndividual = new Individual(individual, whitleyBound, sigma);
         individual.setBounds(whitleyBound);
         newIndividual.evaluateByWhitley();
         counter++;

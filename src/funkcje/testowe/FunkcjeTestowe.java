@@ -12,8 +12,8 @@ import java.util.Random;
  * Created by Nogaz on 02.04.2017.
  */
 public abstract class FunkcjeTestowe implements FunkcjeTestoweInterface{
-    private final int experimentsAmount;
-    private final int terminationCondition = 1000;
+
+    protected int terminationCondition;
     private final int populationSize = 40;
     protected final double mutationProbability = 0.7d;
     protected double sigma = 0.8d;
@@ -33,12 +33,13 @@ public abstract class FunkcjeTestowe implements FunkcjeTestoweInterface{
 
     private double bestResult;
 
-    public FunkcjeTestowe(int experimentsAmount){
-        this.experimentsAmount = experimentsAmount;
+    public FunkcjeTestowe(){
+
     }
 
-    public void doSimulation(final int n){
+    public void doSimulation(final int n, final int terminationCondition){
         this.n = n;
+        this.terminationCondition = terminationCondition;
         counter = 0;
         population = generatePopulation(populationSize);
         while( counter < terminationCondition ){
@@ -86,6 +87,9 @@ public abstract class FunkcjeTestowe implements FunkcjeTestoweInterface{
             }
         }
         return result;
+    }
+    protected void increaseTerminationCondition(){
+
     }
 
 }

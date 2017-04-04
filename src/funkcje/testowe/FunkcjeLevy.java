@@ -11,15 +11,15 @@ import java.util.Random;
  */
 public class FunkcjeLevy extends FunkcjeTestowe {
 
-    public FunkcjeLevy(int experimentsAmount) {
-        super(experimentsAmount);
+    public FunkcjeLevy() {
+        //super(experimentsAmount);
     }
 
     public ArrayList<Individual> generatePopulation(final int amountOfIndividuals){
         final RandomGenerator generator = new RozkladJednostajny();
         final ArrayList<Individual> population = new ArrayList<Individual>();
         for( int i = 0 ; i < amountOfIndividuals ; ++i ){
-            Individual individual = new Individual(n);
+            Individual individual = new Individual(n, levyBound);
             individual.setBounds(levyBound);
             individual.evaluateByLevy();
             population.add(individual);
@@ -36,7 +36,7 @@ public class FunkcjeLevy extends FunkcjeTestowe {
             if( random.nextDouble() > mutationProbability ) {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
-                Individual individual = new Individual(n);
+                Individual individual = new Individual(n, levyBound);
                 individual.setBounds(levyBound);
                 individual.evaluateByLevy();
                 mutatedPopulation.add(individual);
@@ -53,7 +53,7 @@ public class FunkcjeLevy extends FunkcjeTestowe {
         if( sigma < epsilon ){
             sigma = epsilon;
         }
-        newIndividual = new Individual(individual, sigma);
+        newIndividual = new Individual(individual, levyBound, sigma);
         individual.setBounds(levyBound);
         newIndividual.evaluateByLevy();
         counter++;

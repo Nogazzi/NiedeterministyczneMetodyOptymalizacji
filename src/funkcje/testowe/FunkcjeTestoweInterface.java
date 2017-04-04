@@ -10,6 +10,6 @@ public interface FunkcjeTestoweInterface {
     public Individual mutateIndividual(Individual individual);
     public ArrayList<Individual> mutatePopulation(final ArrayList<Individual> population);
     public ArrayList<Individual> selectPopulation(final ArrayList<Individual> population);
-    public void doSimulation(final int n);
+    public void doSimulation(final int n, final int terminationCondition);
     public double getPopulationBestResult();
 }
