@@ -21,7 +21,7 @@ public class FunkcjeTestoweMain {
             ackleyResultQ += funkcjeTestoweAckley.getBestResult();
         }
         ackleyResultQ = ackleyResultQ/experimentsAmount;
-
+        System.out.println("N2 result Q: " + ackleyResultQ);
 
         //petle dla n==4,6,8,10
         double ackleyResult;
@@ -45,11 +45,12 @@ public class FunkcjeTestoweMain {
                     terminationCondition += 1000;
                 }else{
                     //wyniki Q są podobne
-                    ackleyBudgets[n/2-2] = terminationCondition;
                     break;
                 }
             }
+            ackleyBudgets[n/2-2] = terminationCondition;
         }
+
         for(int i = 0 ; i < ackleyBudgets.length ; ++i ){
             System.out.println(ackleyBudgets[i]);
         }
@@ -70,7 +71,7 @@ public class FunkcjeTestoweMain {
             whitleyResultQ += funkcjeWhitley.getBestResult();
         }
         whitleyResultQ = whitleyResultQ/experimentsAmount;
-
+        System.out.println("N2 result Q: " + whitleyResultQ);
 
         //petle dla n==4,6,8,10
         double whitleyResult;
@@ -89,14 +90,14 @@ public class FunkcjeTestoweMain {
                 }
                 whitleyResult = whitleyResult/experimentsAmount;
                 System.out.println(whitleyResult);
-                if( resultNotEqualsEnough(whitleyResultQ, whitleyResultQ) ){
+                if( resultNotEqualsEnough(whitleyResultQ, whitleyResult) ){
                     terminationCondition += 1000;
                 }else{
                     //wyniki Q są podobne
-                    whitleyBudgets[n/2-2] = terminationCondition;
                     break;
                 }
             }
+            whitleyBudgets[n/2-2] = terminationCondition;
         }
         for(int i = 0 ; i < whitleyBudgets.length ; ++i ){
             System.out.println(whitleyBudgets[i]);
@@ -117,7 +118,7 @@ public class FunkcjeTestoweMain {
             levyResultQ += funkcjeLevy.getBestResult();
         }
         levyResultQ = levyResultQ/experimentsAmount;
-
+        System.out.println("N2 result Q: " + levyResultQ);
 
         //petle dla n==4,6,8,10
         double levyResult;
@@ -140,19 +141,21 @@ public class FunkcjeTestoweMain {
                     terminationCondition += 1000;
                 }else{
                     //wyniki Q są podobne
-                    levyyBudgets[n/2-2] = terminationCondition;
                     break;
                 }
             }
+            levyyBudgets[n/2-2] = terminationCondition;
         }
         for(int i = 0 ; i < levyyBudgets.length ; ++i ){
             System.out.println(levyyBudgets[i]);
         }
     }
 
-    private static boolean resultNotEqualsEnough(double resultN2, double resultNx){
-        double difference = Math.log10(resultN2/resultNx);
-        if(Math.abs(difference) < 2){
+    private static boolean resultNotEqualsEnough(final double resultN2, final double resultNx){
+        int n2count = 0;
+        double n2 = resultN2;
+        double difference = Math.floor(Math.log10(resultN2)) - Math.floor(Math.log10(resultNx));
+        if(Math.abs(difference) <= 1){
             return false;
         }
         return true;
@@ -162,4 +165,5 @@ public class FunkcjeTestoweMain {
         x += 1000;
 
     }
+
 }

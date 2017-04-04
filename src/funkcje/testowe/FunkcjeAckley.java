@@ -31,7 +31,7 @@ public class FunkcjeAckley extends FunkcjeTestowe {
         Random random = new Random();
 
         for ( int i = 0 ; i < population.size() ; ++i ) {
-            if( random.nextDouble() > mutationProbability ) {
+            if( random.nextDouble() < mutationProbability ) {
                 mutatedPopulation.add(mutateIndividual(population.get(i)));
             }else{
                 Individual individual = new Individual(n, ackleyBound);

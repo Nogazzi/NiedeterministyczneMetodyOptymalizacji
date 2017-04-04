@@ -98,7 +98,10 @@ public class Individual {
             sumaYi += pow(getXi(i) - a,2) * (1+k*pow(sin(PI*getXi(i+1)),2));
         }
 
-        result = PI/n * (k * pow(sin(PI*getXi(0)), 2) + sumaYi + pow(getXi(n-1) - a, 2));
+        result = PI/n
+                * (k * pow(sin(PI*getXi(0)), 2)
+                + sumaYi
+                + pow(getXi(n-1) - a, 2));
     }
 
     public double getResult(){
